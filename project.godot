@@ -16,7 +16,7 @@ config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/for_map/plugin.cfg", "res://addons/for_map_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/for_map/plugin.cfg")
 
 [physics]
 

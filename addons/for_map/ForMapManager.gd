@@ -14,5 +14,6 @@ func get_scene(path:String)->PackedScene:
 	if cache.has(path):
 		return cache[path]
 	else:
-		push_error("ForMap:没有在缓存中找到场景")
-		return null
+		var new_scene:=await load_scene(path)
+		add_to_cache(path,new_scene)
+		return new_scene

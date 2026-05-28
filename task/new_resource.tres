@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ForMapLoadItem" format=3 uid="uid://funsjlvwhv7h"]
+
+[ext_resource type="Script" uid="uid://bi6ngl4ctq4dp" path="res://addons/for_map/script/ForMapLoadList.gd" id="1_kt54r"]
+
+[resource]
+script = ExtResource("1_kt54r")
+scene = "uid://dgxmuvjof1kvw"
+metadata/_custom_type_script = "uid://bi6ngl4ctq4dp"
