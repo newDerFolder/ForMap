@@ -17,3 +17,7 @@ func get_scene(path:String)->PackedScene:
 		var new_scene:=await load_scene(path)
 		add_to_cache(path,new_scene)
 		return new_scene
+
+func free_scene(path:String):
+	if cache.has(path):
+		cache.erase(path)
