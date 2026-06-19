@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="ForMapLoadItem" format=3 uid="uid://funsjlvwhv7h"]
+[gd_resource type="Resource" script_class="NeighborChunkRes" format=3 uid="uid://funsjlvwhv7h"]
 
-[ext_resource type="Script" uid="uid://bi6ngl4ctq4dp" path="res://addons/for_map/script/ForMapLoadList.gd" id="1_kt54r"]
+[ext_resource type="Script" uid="uid://ue5tqyvpmspm" path="res://addons/for_map/script/NeighborChunkRes.gd" id="1_kt54r"]
+[ext_resource type="PackedScene" uid="uid://dgxmuvjof1kvw" path="res://task/a.tscn" id="2_kvil4"]
 
 [resource]
 script = ExtResource("1_kt54r")
-scene = "uid://dgxmuvjof1kvw"
-metadata/_custom_type_script = "uid://bi6ngl4ctq4dp"
+self_chunk = ExtResource("2_kvil4")
+metadata/_custom_type_script = "uid://ue5tqyvpmspm"
