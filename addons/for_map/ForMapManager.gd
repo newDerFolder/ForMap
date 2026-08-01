@@ -3,7 +3,7 @@ class_name ForMap extends Node
 
 var cache:Dictionary[String,PackedScene]
 
-func load_scene(path:String)->PackedScene:
+static func load_scene(path:String)->PackedScene:
 	await ResourceLoader.load_threaded_request(path)
 	var res=ResourceLoader.load_threaded_get(path)
 	return res
