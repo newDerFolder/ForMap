@@ -1,3 +1,4 @@
+class_name ForMap extends Node
 #挂载到全局中以使用
 
 var cache:Dictionary[String,PackedScene]
