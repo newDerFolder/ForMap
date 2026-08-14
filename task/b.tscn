@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://djvtj33ppd3q1"]
+
+[node name="B" type="Node2D" unique_id=2097130652]
+
+[node name="Label" type="Label" parent="." unique_id=1050363435]
+offset_left = 550.0
+offset_top = 185.0
+offset_right = 610.0
+offset_bottom = 208.0
+text = "this is B"

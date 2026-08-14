@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://dn5l4ta88yytl"]
+
+[sub_resource type="GDScript" id="GDScript_f0buc"]
+script/source = "extends CanvasLayer
+
+
+@export var load_path:String
+var time:=0
+
+func _ready() -> void:
+	await progress_run()
+	var scene = await ForMap.load_path(load_path)
+	if scene == null:
+		push_error(\"场景加载失败: \", load_path)
+		return
+	
+
+	
+
+	var tw2 = get_tree().create_tween()
+	tw2.tween_property($VBoxContainer/ProgressBar, \"value\", 100, 0.3).set_ease(Tween.EASE_IN_OUT)
+	await tw2.finished
+
+	await get_tree().create_timer(0.2).timeout
+	get_tree().change_scene_to_packed(scene)
+
+
+func progress_run() -> Tween:
+	var tw = get_tree().create_tween()
+	tw.tween_property($VBoxContainer/ProgressBar, \"value\", 90, 0.5).set_ease(Tween.EASE_IN_OUT)
+	await tw.finished
+	return tw
+func _on_timer_timeout() -> void:
+	time+=0.1
+"
+
+[node name="LoadingPage" type="CanvasLayer" unique_id=991159794]
+layer = 1145
+script = SubResource("GDScript_f0buc")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1308684749]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17785347, 0.17785347, 0.17785347, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1112997371]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=711995844]
+layout_mode = 2
+text = "ForMap"
+
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=317202602]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer" unique_id=1848308341]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=887225038]
+layout_mode = 2
+text = "Loading Now"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=663481123]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

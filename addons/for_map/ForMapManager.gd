@@ -1,9 +1,13 @@
 class_name ForMap extends Node
-#挂载到全局中以使用
 
 var cache:Dictionary[String,PackedScene]
 
-static func load_scene(path:String)->PackedScene:
+static func make_load_page(path:String)->Node:
+	var page=preload("res://addons/for_map/scene/loading_page.tscn").instantiate()
+	page.load_path=path
+	return page
+
+static func load_path(path:String)->PackedScene:
 	await ResourceLoader.load_threaded_request(path)
 	var res=ResourceLoader.load_threaded_get(path)
 	return res
@@ -15,7 +19,7 @@ func get_scene(path:String)->PackedScene:
 	if cache.has(path):
 		return cache[path]
 	else:
-		var new_scene:=await load_scene(path)
+		var new_scene:=await load_path(path)
 		add_to_cache(path,new_scene)
 		return new_scene
 

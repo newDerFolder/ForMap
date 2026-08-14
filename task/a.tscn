@@ -1,3 +1,28 @@
 [gd_scene format=3 uid="uid://dgxmuvjof1kvw"]
 
+[sub_resource type="GDScript" id="GDScript_7gd3y"]
+script/source = "extends Node2D
+
+func _ready() -> void:
+	print(\"welcome a\")
+"
+
+[sub_resource type="GDScript" id="GDScript_xfn2r"]
+script/source = "extends Button
+
+
+func _pressed() -> void:
+	add_child(ForMap.make_load_page(\"res://task/b.tscn\"))
+	
+"
+
 [node name="A" type="Node2D" unique_id=1324465543]
+script = SubResource("GDScript_7gd3y")
+
+[node name="Button" type="Button" parent="." unique_id=501272333]
+offset_left = 541.0
+offset_top = 346.0
+offset_right = 549.0
+offset_bottom = 354.0
+text = "jump"
+script = SubResource("GDScript_xfn2r")
