@@ -12,7 +12,7 @@ script/source = "extends Button
 
 
 func _pressed() -> void:
-	ForMapManager.goto(\"res://task/b.tscn\")
+	ForMapService.goto(\"res://task/b.tscn\")
 	#add_child(ForMap.make_load_page(\"res://task/b.tscn\"))
 	
 "

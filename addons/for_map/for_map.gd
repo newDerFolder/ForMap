@@ -14,7 +14,7 @@ func _disable_plugin() -> void:
 
 func _enter_tree() -> void:
 	# Initialization of the plugin goes here.
-	add_autoload_singleton("ForMapManager","res://addons/for_map/ForMapManager.gd")
+	add_autoload_singleton("ForMapService","res://addons/for_map/ForMapService.gd")
 
 
 func _exit_tree() -> void:
