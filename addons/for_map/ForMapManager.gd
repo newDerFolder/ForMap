@@ -2,6 +2,12 @@ class_name ForMap extends Node
 
 var cache:Dictionary[String,PackedScene]
 
+
+func goto(path:String):
+	var page = make_load_page(path)
+	get_tree().change_scene_to_node(page)
+
+
 static func make_load_page(path:String)->Node:
 	var page=preload("res://addons/for_map/scene/loading_page.tscn").instantiate()
 	page.load_path=path
