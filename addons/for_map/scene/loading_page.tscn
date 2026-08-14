@@ -9,7 +9,7 @@ var time:=0
 
 func _ready() -> void:
 	await progress_run()
-	var scene = await ForMap.load_path(load_path)
+	var scene = await ForMap.load_by_path(load_path)
 	if scene == null:
 		push_error(\"场景加载失败: \", load_path)
 		return
