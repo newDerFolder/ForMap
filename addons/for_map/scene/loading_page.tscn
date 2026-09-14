@@ -24,11 +24,13 @@ func _ready() -> void:
 	get_tree().change_scene_to_packed(scene)
 
 
-func progress_run() -> Tween:
+func progress_run() -> void:
 	var tw = get_tree().create_tween()
 	tw.tween_property($VBoxContainer/ProgressBar, \"value\", 90, 0.5).set_ease(Tween.EASE_IN_OUT)
 	await tw.finished
-	return tw
+	while true:
+		await get_tree().create_timer(1).timeout
+		$VBoxContainer/HBC2/Label3.text=str(time)+\"s\"
 func _on_timer_timeout() -> void:
 	time+=0.1
 	$VBoxContainer/HBC2/Label3.text=str(time)+\"s\"
