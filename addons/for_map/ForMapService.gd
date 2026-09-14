@@ -13,10 +13,29 @@ static func make_load_page(path:String)->Node:
 	page.load_path=path
 	return page
 
-static func load_by_path(path:String)->PackedScene:
-	await ResourceLoader.load_threaded_request(path)
-	var res=ResourceLoader.load_threaded_get(path)
-	return res
+static func load_by_path(path: String) -> PackedScene:
+	# 1. 发起异步加载请求
+	var err = ResourceLoader.load_threaded_request(path)
+	if err != OK:
+		push_error("加载失败: ", path)
+		return null
+	
+	# 2. 等待加载完成
+	while true:
+		var status = ResourceLoader.load_threaded_get_status(path)
+		if status == ResourceLoader.THREAD_LOAD_LOADED:
+			# 加载完成，获取资源
+			var res = ResourceLoader.load_threaded_get(path)
+			return res as PackedScene
+		elif status == ResourceLoader.THREAD_LOAD_FAILED:
+			push_error("加载失败: ", path)
+			return null
+		
+		# 让出主线程，让 Timer / UI 继续运行
+		await Engine.get_main_loop().process_frame
+	
+	# 兜底返回（理论上不会执行到这里）
+	return null
 
 func add_to_cache(path: String,packed_scene:PackedScene):
 	cache[path]=packed_scene

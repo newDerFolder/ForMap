@@ -3,37 +3,35 @@
 [sub_resource type="GDScript" id="GDScript_f0buc"]
 script/source = "extends CanvasLayer
 
-
-@export var load_path:String
-var time:float=0
+@export var load_path: String
+var time: float = 0
 
 func _ready() -> void:
+	$Timer.start(0.1)
+	
 	await progress_run()
+	
+	# 真正加载时，Timer 继续跑
 	var scene = await ForMap.load_by_path(load_path)
 	if scene == null:
 		push_error(\"场景加载失败: \", load_path)
 		return
 	
-
-
 	var tw2 = get_tree().create_tween()
 	tw2.tween_property($VBoxContainer/ProgressBar, \"value\", 100, 0.3).set_ease(Tween.EASE_IN_OUT)
 	await tw2.finished
-
+	
 	await get_tree().create_timer(0.2).timeout
 	get_tree().change_scene_to_packed(scene)
-
 
 func progress_run() -> void:
 	var tw = get_tree().create_tween()
 	tw.tween_property($VBoxContainer/ProgressBar, \"value\", 90, 0.5).set_ease(Tween.EASE_IN_OUT)
 	await tw.finished
-	while true:
-		await get_tree().create_timer(1).timeout
-		$VBoxContainer/HBC2/Label3.text=str(time)+\"s\"
+
 func _on_timer_timeout() -> void:
-	time+=0.1
-	$VBoxContainer/HBC2/Label3.text=str(time)+\"s\"
+	time += 0.1
+	$VBoxContainer/HBC2/Label3.text = str(time) + \"s\"
 "
 
 [node name="LoadingPage" type="CanvasLayer" unique_id=991159794]
