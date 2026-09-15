@@ -17,7 +17,7 @@ func _ready() -> void:
 		return
 	
 	var tw2 = get_tree().create_tween()
-	tw2.tween_property($VBoxContainer/ProgressBar, \"value\", 100, 0.3).set_ease(Tween.EASE_IN_OUT)
+	tw2.tween_property($MC/VBC/ProgressBar, \"value\", 100, 0.3).set_ease(Tween.EASE_IN_OUT)
 	await tw2.finished
 	
 	await get_tree().create_timer(0.2).timeout
@@ -25,13 +25,19 @@ func _ready() -> void:
 
 func progress_run() -> void:
 	var tw = get_tree().create_tween()
-	tw.tween_property($VBoxContainer/ProgressBar, \"value\", 90, 0.5).set_ease(Tween.EASE_IN_OUT)
+	tw.tween_property($MC/VBC/ProgressBar, \"value\", 90, 0.5).set_ease(Tween.EASE_IN_OUT)
 	await tw.finished
 
 func _on_timer_timeout() -> void:
 	time += 0.1
-	$VBoxContainer/HBC2/Label3.text = str(time) + \"s\"
+	$MC/VBC/HBC2/Label3.text = str(time) + \"s\"
 "
+
+[sub_resource type="LabelSettings" id="LabelSettings_f0buc"]
+font_size = 50
+font_color = Color(1, 0.9254902, 0, 1)
+outline_size = 15
+outline_color = Color(1, 0.77254903, 0.07450981, 1)
 
 [node name="LoadingPage" type="CanvasLayer" unique_id=991159794]
 layer = 1145
@@ -45,55 +51,67 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.17785347, 0.17785347, 0.17785347, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1112997371]
+[node name="MC" type="MarginContainer" parent="." unique_id=1305253944]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
-[node name="Label2" type="Label" parent="VBoxContainer" unique_id=711995844]
+[node name="VBC" type="VBoxContainer" parent="MC" unique_id=1112997371]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MC/VBC" unique_id=711995844]
 layout_mode = 2
 text = "ForMap"
+label_settings = SubResource("LabelSettings_f0buc")
 
-[node name="Control" type="Control" parent="VBoxContainer" unique_id=317202602]
+[node name="Label" type="Label" parent="MC/VBC" unique_id=1658018524]
+layout_mode = 2
+text = "v0.2"
+
+[node name="Control" type="Control" parent="MC/VBC" unique_id=317202602]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBC2" type="HBoxContainer" parent="VBoxContainer" unique_id=1431714128]
+[node name="HBC2" type="HBoxContainer" parent="MC/VBC" unique_id=1431714128]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="VBoxContainer/HBC2" unique_id=1447849772]
+[node name="Control" type="Control" parent="MC/VBC/HBC2" unique_id=1447849772]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label3" type="Label" parent="VBoxContainer/HBC2" unique_id=22954968]
+[node name="Label3" type="Label" parent="MC/VBC/HBC2" unique_id=22954968]
 layout_mode = 2
 text = "0s"
 horizontal_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer" unique_id=1848308341]
+[node name="ProgressBar" type="ProgressBar" parent="MC/VBC" unique_id=1848308341]
 layout_mode = 2
 
-[node name="HBC" type="HBoxContainer" parent="VBoxContainer" unique_id=436683317]
+[node name="HBC" type="HBoxContainer" parent="MC/VBC" unique_id=436683317]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="VBoxContainer/HBC" unique_id=1313464204]
+[node name="Control" type="Control" parent="MC/VBC/HBC" unique_id=1313464204]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/HBC" unique_id=887225038]
+[node name="Label" type="Label" parent="MC/VBC/HBC" unique_id=887225038]
 layout_mode = 2
 text = "Loading Now"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBC" unique_id=1874062123]
+[node name="Label2" type="Label" parent="MC/VBC/HBC" unique_id=1874062123]
 visible = false
 layout_mode = 2
 text = "Loading Now"
 horizontal_alignment = 1
 
-[node name="Control2" type="Control" parent="VBoxContainer/HBC" unique_id=1360809202]
+[node name="Control2" type="Control" parent="MC/VBC/HBC" unique_id=1360809202]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
