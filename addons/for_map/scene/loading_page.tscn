@@ -72,7 +72,7 @@ label_settings = SubResource("LabelSettings_f0buc")
 
 [node name="Label" type="Label" parent="MC/VBC" unique_id=1658018524]
 layout_mode = 2
-text = "v0.2"
+text = "v0.3"
 
 [node name="Control" type="Control" parent="MC/VBC" unique_id=317202602]
 layout_mode = 2
