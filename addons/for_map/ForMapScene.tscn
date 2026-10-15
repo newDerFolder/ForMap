@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dn6oa0k70pa0g"]
+
+[ext_resource type="Script" uid="uid://rfu7u7uxtci8" path="res://addons/for_map/ForMapClass.gd" id="1_jwopa"]
+
+[node name="ForMap" type="Node" unique_id=1514831524]
+script = ExtResource("1_jwopa")
+metadata/_custom_type_script = "uid://rfu7u7uxtci8"

@@ -1,4 +1,4 @@
-class_name ForMap extends Node
+class_name ForMapClass extends Node
 
 var cache:Dictionary[String,PackedScene]
 
